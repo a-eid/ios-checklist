@@ -27,7 +27,7 @@ class Home: UITableViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: checkListCell, for: indexPath) as! CheckListCell
-    cell.selectionStyle = .none
+    //cell.selectionStyle = .none
     cell.updateViews(todo: todos[indexPath.row])
     return cell
   }
