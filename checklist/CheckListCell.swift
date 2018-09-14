@@ -1,11 +1,12 @@
 import UIKit
 
 
-let checkListCell = "CheckListCell"
-
 class CheckListCell: UITableViewCell {
-  
-  let label:UILabel = {
+  // static let is better scopped/namespaced than global properties 
+  static let identifier = "CheckListCell"
+    
+  // encapsulation
+  private let label:UILabel = {
     let l = UILabel()
     l.translatesAutoresizingMaskIntoConstraints = false
     return l
@@ -20,7 +21,7 @@ class CheckListCell: UITableViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func setupViews(){
+  private func setupViews(){
     self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     setupLabel()
   }
@@ -28,19 +29,14 @@ class CheckListCell: UITableViewCell {
   func updateViews(todo: CheckListItem){
     label.text = todo.content
     accessoryType = todo.checked ? .checkmark : .none
+    backgroundColor = todo.checked ? .lightGray : .white
   }
   
-  func updateChecked(todo: CheckListItem){
-    accessoryType = todo.checked ? .checkmark : .none
-  }
-  
-  
-  func setupLabel(){
+  private func setupLabel(){
     addSubview(label)
     label.topAnchor.constraint(equalTo: topAnchor)
     label.bottomAnchor.constraint(equalTo: bottomAnchor )
     label.leftAnchor.constraint(equalTo: leftAnchor )
     label.rightAnchor.constraint(equalTo: rightAnchor )
   }
-  
 }
